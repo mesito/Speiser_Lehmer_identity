@@ -2,7 +2,8 @@
 """Part A analysis: full-ensemble fits, statistics, CSV + report md."""
 import numpy as np
 
-D = './output/data/'
+import os
+D = os.environ.get("RH_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")) + "/"
 XCUTS = [10 ** 2, 10 ** 3, 10 ** 4, 10 ** 5, 10 ** 6, 10 ** 7]
 
 f8 = np.load(D + 'floors_all_8p4e9.npy')          # idx,t0,g,s,far,floor

@@ -2,6 +2,7 @@
 Dumitriu-Edelman beta=2 tridiagonal, semicircle-CDF unfolding, bulk conditioning.
 Saves ./output/gue_mc_results.npz
 """
+import os
 import numpy as np
 from scipy.linalg import eigh_tridiagonal
 from multiprocessing import Pool
@@ -83,6 +84,7 @@ if __name__ == "__main__":
         res[N] = (nmats, gaps, sums, sp)
         print(f"N={N}: {nmats} matrices, {len(gaps)} conditioned pairs, "
               f"{len(sp)} bulk spacings", flush=True)
+    os.makedirs('./output', exist_ok=True)
     np.savez('./output/gue_mc_results.npz',
              **{f"N{N}_gaps": v[1] for N, v in res.items()},
              **{f"N{N}_sp": v[3] for N, v in res.items()},
