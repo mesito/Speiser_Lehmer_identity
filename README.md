@@ -55,6 +55,10 @@ certified zeros, shipped for full provenance (they are **not** needed to run
 `zeros1.gz`, `zeros6.gz` — Odlyzko's tables near heights 10⁰ and 10⁶;
 the remaining 33 files are derived by `pipeline/` and shipped so that
 `verify_all.py` runs without recomputation. `SHA256SUMS.txt` covers every
-file in the package. Conventions: tight pair s < 0.15; floor = max|Z| over
+file in the package and records its **shipped state**: the pipeline scripts
+write their reports and derived arrays into `data/`, so after any pipeline
+run the affected checksums will no longer match the manifest. To restore a
+verifiable state, regenerate it from the repo root:
+`sha256sum README.md verify_all.py data/* pipeline/* > SHA256SUMS.txt`. Conventions: tight pair s < 0.15; floor = max|Z| over
 the gap (33-point grid + parabolic refinement); L_X phases in 80-bit
 long double.
