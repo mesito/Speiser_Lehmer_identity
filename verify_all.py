@@ -970,18 +970,23 @@ mmin22, mmax22 = float(marg22.min()), float(marg22.max())
 report("T22 margin Delta_*-Delta_0 > 0 (min)", mmin22, ">0", "-",
        mmin22 > 0, cfmt="%.4f")
 report("T22 margin range all eligible [min,max]",
-       "%.4f/%.4f" % (mmin22, mmax22), "info (typ. 6.9-8.5)", "-", True)
-# preprint's "median pair" (Thm 9.5: u=6.90 = Delta_* at the median pair):
-# representative g=1.0e-2 with the data median far
+       "%.4f/%.4f" % (mmin22, mmax22), "info (reference 6.9-8.5)", "-", True)
+# preprint's "reference pair" (Table 9.2: u=6.90 = Delta_* at the reference
+# pair): representative g=1.0e-2 with the data median far. NOTE (v2): the true
+# ensemble median of Delta_* is 4.46 (median-gap pair g=0.0356), NOT 6.9;
+# the value 6.9 belongs to the reference pair g=1e-2 (top ~1% by tightness).
 fmed22 = float(np.median(far22))
 gmed22 = 1.0e-2
 emed22 = gmed22 / 2.0
 Dst_med22 = float(np.log(4.0 * (emed22 ** 2 + 4.0 / fmed22) ** 2 / gmed22 ** 2))
-report("T22 Delta_* at median pair", Dst_med22, 6.90, 0.1,
+report("T22 Delta_* at reference pair (g=1e-2)", Dst_med22, 6.90, 0.1,
        abs(Dst_med22 - 6.90) <= 0.1, cfmt="%.4f", tfmt="%.2f")
 mmed22 = Dst_med22 - D0
-report("T22 margin at median pair in [6.0,8.5]", mmed22, "6.9", "[6.0,8.5]",
+report("T22 margin at reference pair in [6.0,8.5]", mmed22, "6.9", "[6.0,8.5]",
        6.0 <= mmed22 <= 8.5, cfmt="%.4f")
+Dst_truemed22 = float(np.median(Dst22[elig22]))
+print("    info: true ensemble median Delta_* (eligible) = %.4f, margin %.4f"
+      % (Dst_truemed22, Dst_truemed22 - D0))
 imax22 = int(np.argmax(far22))
 report("T22 max-far pair Delta_*", float(Dst22[imax22]), -1.25, 0.3,
        abs(Dst22[imax22] + 1.25) <= 0.3, cfmt="%.4f", tfmt="%.2f")
@@ -996,7 +1001,7 @@ Bt22 = gt22 ** 2 / (4.0 * ((gt22 / 2) ** 2 + 4.0 / fmean22) ** 2)
 report("T22 B*/|P_X| tightest (min g, mean far)", Bt22, 2.1e-4, 0.15,
        abs(Bt22 / 2.1e-4 - 1) <= 0.15, cfmt="%.4e", tfmt="%.1e")
 Bm22 = gmed22 ** 2 / (4.0 * (emed22 ** 2 + 4.0 / fmed22) ** 2)
-report("T22 B*/|P_X| median (g=1e-2, median far)", Bm22, 9.6e-4, 0.15,
+report("T22 B*/|P_X| reference (g=1e-2, median far)", Bm22, 9.6e-4, 0.15,
        abs(Bm22 / 9.6e-4 - 1) <= 0.15, cfmt="%.4e", tfmt="%.1e")
 Bx22 = float(Bstar22[imax22])
 report("T22 B*/|P_X| max-far pair", Bx22, 3.5, 0.15,

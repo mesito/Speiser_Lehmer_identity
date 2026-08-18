@@ -33,9 +33,9 @@ The data root is `$RH_DATA` (default: `./data`).
 | §5, Tables 5.1–5.2, Fig. 5.1; Empirical Law 1, Lemma B′.1, Thms B′(a)/(b), Cor B′.2 | floor fits (a, b, R² = 0.951); fold analysis; g_app = √(g²−4h₀²) | T6, T6X |
 | §6, Tables 6.1–6.2, Fig. 6.1 | mediation: partial correlations 0.027 vs 0.873; Euler deficit −3.13σ at X = 10⁶ | T11–T13 |
 | §7, Tables 7.1–7.3, Fig. 7.1; Theorem E | far-field law 2.5·dens²; shield 1.354/1.360; GUE small-gap tails, C_GUE = 4π²/15 | T2–T5, T14–T15 |
-| §8, Table 8.1; Proposition 8.1 | median per-pair margin; novelty ledger | T22 (sweep 2736/2736) |
+| §8, Table 8.1; Proposition 8.1 | per-pair certificate margin (reference pair $g=10^{-2}$; true ensemble median $\Delta_*=4.46$); novelty ledger | T22 (sweep 2736/2736) |
 | §9, Tables 9.1–9.3; Lemma 9.1 (Δ₀ = 0.2387), Cors 9.1′/9.2 + Rem 9.2′, Lemmas 9.3/9.4/9.7, Thms 9.5/9.8/9.9, Prop 9.6 | the X-free certificate; certified Chernoff table; union bound | T16–T21 |
-| Appendix B, Table B.1 | displacement verification, 15 tightest pairs | T7 |
+| Appendix B, Table B.1 | displacement verification, 15 tightest pairs of the 300-pair subsample | T7 |
 | Appendix C | full-ensemble detector sweep; out-of-sample row at t ≈ 7005 (1.0 %) | T22 |
 
 ## 3. `pipeline/` — provenance of the derived data
