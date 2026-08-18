@@ -44,7 +44,8 @@ default run, adding ~30 s; primes <= 1e7 sieved once in T6X and reused):
   T22 per-pair certificate margin (Cor 9.2 + Prop 8.4, from
       detector_sweep_8p4e9.csv): H=sqrt(2/far) column check, eligibility
       far<4/(eps(1-eps)) (equivalently Delta_*>0), margin Delta_*-Delta_0
-      positivity, Delta_*=6.94 at the median pair (Thm 9.5's u=6.90),
+      positivity, Delta_*=6.94 at the reference pair g=1e-2 with the median far
+      (Thm 9.5's u=6.90; true ensemble median Delta_*=4.46),
       max-far pair Delta_*=-1.25, and the headline B_*(H)/|P_X| arithmetic.
       NOTE (provenance): the Prop 8.4 table rows pair min g=4.15e-3 with
       the ensemble MEAN far (27.98~28) and the representative g=1.0e-2 with
@@ -711,8 +712,8 @@ x16 = P7 ** -0.5
 d0_term = -np.log1p(-x16) - x16 - 0.5 * P7 ** -1 - (P7 ** -1.5) / 3.0
 d0_cum = np.cumsum(d0_term)
 D0 = float(d0_cum[-1])
-report("T16 Delta_0(1e7)", D0, 0.2386607627819003, 1e-12,
-       abs(D0 - 0.2386607627819003) <= 1e-12, cfmt="%.13f", tfmt="%.13f")
+report("T16 Delta_0(1e7)", D0, 0.2386607627819104, 1e-12,
+       abs(D0 - 0.2386607627819104) <= 1e-12, cfmt="%.13f", tfmt="%.13f")
 d0p2 = float(d0_term[0])
 report("T16 p=2 term", d0p2, 0.15298926591521006, 1e-15,
        abs(d0p2 - 0.15298926591521006) <= 1e-15, cfmt="%.15f", tfmt="%.15f")
@@ -785,6 +786,17 @@ TBIG = 8.436e9
 err18 = Sa18 ** 2 * 4 * 1e7 / TBIG ** 2
 report("T18 2nd-moment err (sum a_p)^2 4X/H", err18, 1.21e-7, 0.05,
        abs(err18 / 1.21e-7 - 1) <= 0.05, cfmt="%.4e", tfmt="%.2e")
+# Lemma 9.4 (v2): mixed-harmonic class (ii) 8 pi(X)^2/H, sum-frequency
+# class (iii) (sum a_p)^2/(H log 2), and the corrected total 1.71e-7.
+err18ii = 8.0 * len(P7) ** 2 / TBIG ** 2
+report("T18 class (ii) 8 pi(X)^2/H", err18ii, 4.96e-8, 0.05,
+       abs(err18ii / 4.96e-8 - 1) <= 0.05, cfmt="%.4e", tfmt="%.2e")
+err18iii = Sa18 ** 2 / (TBIG ** 2 * np.log(2.0))
+report("T18 class (iii) (sum a_p)^2/(H log2)", err18iii, 4.4e-15, 0.05,
+       abs(err18iii / 4.4e-15 - 1) <= 0.05, cfmt="%.4e", tfmt="%.2e")
+err18tot = err18 + err18ii + err18iii
+report("T18 total 2nd-moment error (Lemma 9.4)", err18tot, 1.71e-7, 0.05,
+       abs(err18tot / 1.71e-7 - 1) <= 0.05, cfmt="%.4e", tfmt="%.2e")
 mean18 = 2 * Sa18 / (TBIG ** 2 * np.log(2))
 report("T18 mean bound 2 sum a_p/(H log 2)", mean18, 1.9e-17, 0.05,
        abs(mean18 / 1.9e-17 - 1) <= 0.05, cfmt="%.4e", tfmt="%.1e")

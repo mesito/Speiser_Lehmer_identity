@@ -8,7 +8,7 @@ Reproducibility package for
 
 Every numerical claim of the paper — every table, every measured constant,
 and the certified bounds of Section 9 — is recomputed by `verify_all.py`
-(test groups **T1–T22, 124 checks, all passing**), independently of the text,
+(test groups **T1–T22, 127 checks, all passing**), independently of the text,
 with pass/fail criteria stated in the script.
 
 ## 1. Requirements and use
